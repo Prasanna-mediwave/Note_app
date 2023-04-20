@@ -1,0 +1,3 @@
+.add-btn {
+  @apply !bg-naturalWhite rounded-full w-[60px] h-[60px] mt-[90px] mb-[45px] flex justify-center items-center float-right;
+}

@@ -31,10 +31,10 @@ module.exports = {
       },
     },
     screens: {
-      min_xl:{min:'1367px'},
+      min_xl: { min: "1367px" },
       max_xs: { max: "620px" },
       max_xxs: { max: "420px" },
-      min_xs:{min:"621px"}
+      min_xs: { min: "621px" },
     },
   },
   plugins: [],

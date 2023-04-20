@@ -1,0 +1,6 @@
+.header-text {
+  @apply text-[42px] text-naturalWhite;
+}
+.header-right {
+  @apply flex gap-5;
+}
