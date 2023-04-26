@@ -3,10 +3,8 @@ import AddIcon from "../assets/AddIcon";
 import Card from "../components/card/Card";
 import "../pages/styles/home.css";
 import { Header } from "../components/header/Header";
-import BackIcon from "../assets/BackIcon";
 import CardView from "../components/cardView/CardView";
-import ColorPalette from "../components/colorPalette/ColorPalette";
-import SearchIcon from "../assets/SearchIcon";
+import Search from "../components/searchFilter/Search";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -15,7 +13,7 @@ const Home = () => {
       <Header
         leftside="Notes"
         rigthOption1={<CardView />}
-        rigthOption2={<SearchIcon />}
+        rigthOption2={<Search />}
       />
       <Card />
       <div className="min_xs:hidden">

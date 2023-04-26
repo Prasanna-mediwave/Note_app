@@ -1,0 +1,12 @@
+.form-container {
+  @apply flex flex-col gap-y-[13px];
+}
+::placeholder {
+  @apply text-primaryHeading opacity-50;
+}
+.form-container input {
+  @apply p-2 text-[26px] bg-transparent text-primaryHeading focus:outline-none;
+}
+.form-container textarea {
+  @apply p-2 text-lg bg-transparent text-primaryContent focus:outline-none resize-none;
+}

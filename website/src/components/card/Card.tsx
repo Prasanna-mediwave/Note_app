@@ -2,10 +2,12 @@ import { useNavigate } from "react-router-dom";
 import AddIcon from "../../assets/AddIcon";
 import { useNote } from "../useContext/Context";
 import "./card.css";
+import { useState } from "react";
 
 const Card = () => {
   const { state } = useNote();
   const navigate = useNavigate();
+  const [count, setCount] = useState(Number);
   return (
     <div className="outer-card-container">
       <div className=" max_xs:hidden">
@@ -23,18 +25,26 @@ const Card = () => {
       <section
         className={`card-container ${state.view ? "grid-cols-1" : null}`}
       >
-        {(state.filter ? state.filter : state.cardDetial).map((item: any) => (
-          <div>
+        {(state.filter ? state.filter : state.cardDetial).map(
+          (item: any, index: number) => (
             <div
-              className={`bg-[#FFA186] card-wapper ${
-                state.view ? "horizontial-card" : null
-              }`}
+              key={`card-id-${index}`}
+              onClick={() => {
+                setCount(index);
+                console.log(index, "<<<<<<<<tesg>>>>>>");
+              }}
             >
-              <div className=" text-primaryBG">{item?.note}</div>
-              <div className=" text-primaryDate">{item?.date}</div>
+              <div
+                className={`bg-[#FFA186] card-wapper ${
+                  state.view ? "horizontial-card" : null
+                }`}
+              >
+                <div className=" text-primaryBG">{item.note}</div>
+                <div className=" text-primaryDate">{item.date}</div>
+              </div>
             </div>
-          </div>
-        ))}
+          )
+        )}
       </section>
     </div>
   );

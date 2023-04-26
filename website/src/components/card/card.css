@@ -1,18 +1,18 @@
-.outer-card-container{
-    @apply min_xs:w-[540px] min_xl:!w-[45%]  m-auto
+.outer-card-container {
+  @apply min_xs:w-[540px] min_xl:!w-[45%]  m-auto;
 }
-.add-new-note{
-    @apply flex justify-center items-center px-6 py-[14px] !bg-selected mb-8 ml-auto rounded-[10px] text-[14px] text-primaryBG
+.add-new-note {
+  @apply flex justify-center items-center px-6 py-[14px] !bg-selected mb-8 ml-auto rounded-[10px] text-[14px] text-primaryBG;
 }
-.addIcon svg{
-    @apply w-[14px] h-[14px] mr-[10px]
+.addIcon svg {
+  @apply w-[14px] h-[14px] mr-[10px];
 }
-.card-container{
-    @apply grid grid-cols-2 gap-[10px] max_xs:w-[370px] max_xxs:w-[280px] m-auto
+.card-container {
+  @apply grid grid-cols-2 gap-[10px] max_xs:w-[370px] max_xxs:w-[280px] m-auto;
 }
-.card-wapper{
-    @apply max_xs:w-[180px] max_xxs:w-[135px] max_xs:h-[165px] min_xs:h-[220px] p-[25px] max_xxs:p-3 flex justify-between flex-col rounded-[10px]
+.card-wapper {
+  @apply max_xs:w-[180px] max_xxs:w-[135px] max_xs:h-[165px] min_xs:h-[220px] p-[25px] max_xxs:p-3 flex justify-between flex-col rounded-[10px] cursor-pointer;
 }
-.horizontial-card{
-    @apply  w-full min_xs:h-40 max_xs:h-[120px]
+.horizontial-card {
+  @apply w-full min_xs:h-40 max_xs:h-[120px];
 }

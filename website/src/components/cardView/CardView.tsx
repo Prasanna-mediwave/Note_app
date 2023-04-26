@@ -1,11 +1,11 @@
-import React from "react";
 import { useNote } from "../useContext/Context";
 
 const CardView = () => {
   const { state, dispatch } = useNote();
-  const viewHandler = () => {
+  const viewHandler = (e: any) => {
     dispatch({
-      type: "CARD_VIEW",
+      type: "INPUT_HANDLER",
+      field: "view",
       payload: !state.view,
     });
   };

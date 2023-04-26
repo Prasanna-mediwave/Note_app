@@ -38,10 +38,8 @@ const NoteContext = createContext<{ state: any; dispatch: any } | undefined>(
 
 const NoteReducer = (state: any, action: any) => {
   switch (action.type) {
-    case "CARD_VIEW":
-      return { ...state, view: action.payload };
-    case "COLOR_PALETTE":
-      return { ...state, colorPalette: action.payload };
+    case "INPUT_HANDLER":
+      return { ...state, [action.field]: action.payload };
     case "SEARCH_FILTER":
       return {
         ...state,
@@ -50,12 +48,6 @@ const NoteReducer = (state: any, action: any) => {
           return item.note.match(regex);
         }),
       };
-    case "CLEAR_FILTER":
-      return {
-        ...state,
-        filtered: null,
-      };
-
     default:
       return state;
   }

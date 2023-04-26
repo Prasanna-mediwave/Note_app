@@ -1,0 +1,31 @@
+.search-container {
+  @apply flex bg-naturalWhite/s rounded-[15px];
+}
+.search-container input {
+  @apply m-2 bg-transparent text-naturalWhite outline-none focus:outline-none;
+}
+.open-search {
+  @apply flex;
+  animation: searchMove 1s;
+}
+@keyframes searchMove {
+  from {
+    overflow: hidden;
+    width: 50px;
+  }
+  to {
+    width: 334px;
+    overflow: hidden;
+  }
+}
+.test {
+  animation: closeMove 1s;
+}
+@keyframes closeMove {
+  from {
+    width: 334px;
+  }
+  to {
+    width: 50px;
+  }
+}

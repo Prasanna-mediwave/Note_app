@@ -11,5 +11,5 @@ header {
   @apply flex justify-between items-center mb-20 max_xs:mb-12 max_xxs:mb-8;
 }
 main {
-  @apply w-[88%] m-auto mt-[75px] max_xs:mt-[45px];
+  @apply w-[88%] m-auto my-[75px] max_xs:mt-[45px];
 }
