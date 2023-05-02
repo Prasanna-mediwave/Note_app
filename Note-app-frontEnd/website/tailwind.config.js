@@ -12,16 +12,6 @@ module.exports = {
         primaryDate: "#585858",
         secondaryDate: "#AAAAAA",
         selected: "#7BFF84",
-        cardColor: {
-          1: "#FFA186",
-          2: "#FFC575",
-          3: "#E2EB90",
-          4: "#A5F982",
-          5: "#75D9E7",
-          6: "#E775DA",
-          7: "#759EFF",
-          8: "#FFFFFF",
-        },
       },
       fontFamily: {
         Montserrat: ["Montserrat", "sans-serif"],
@@ -32,6 +22,7 @@ module.exports = {
     },
     screens: {
       min_xl: { min: "1367px" },
+      min_lg: { min: "768px" },
       max_xs: { max: "620px" },
       max_xxs: { max: "420px" },
       min_xs: { min: "621px" },

@@ -1,9 +1,12 @@
-import { useNavigate } from "react-router-dom";
+import React from "react";
 
-const BackIcon = () => {
-  const navigate = useNavigate();
+interface BackIconProps {
+  onClick: any;
+}
+
+export const BackIcon: React.FC<BackIconProps> = ({ onClick }) => {
   return (
-    <button onClick={() => navigate(-1)} className="icon-container">
+    <button onClick={onClick} className="icon-container">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="20.607"
@@ -21,5 +24,3 @@ const BackIcon = () => {
     </button>
   );
 };
-
-export default BackIcon;

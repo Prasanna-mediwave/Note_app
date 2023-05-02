@@ -10,3 +10,9 @@
 .form-container textarea {
   @apply p-2 text-lg bg-transparent text-primaryContent focus:outline-none resize-none;
 }
+.color-select {
+  @apply w-7 h-7 rounded-full;
+}
+.color-palette-container {
+  @apply flex justify-between items-center p-[11px] bg-naturalWhite/s rounded-2xl mb-11;
+}

@@ -2,7 +2,7 @@ import { useNote } from "../useContext/Context";
 
 const CardView = () => {
   const { state, dispatch } = useNote();
-  const viewHandler = (e: any) => {
+  const viewHandler = () => {
     dispatch({
       type: "INPUT_HANDLER",
       field: "view",

@@ -16,3 +16,12 @@
 .horizontial-card {
   @apply w-full min_xs:h-40 max_xs:h-[120px];
 }
+.card-header {
+  @apply text-primaryHeading text-[26px] font-bold;
+}
+.card-date {
+  @apply text-secondaryDate text-lg my-5;
+}
+.card-detials {
+  @apply text-primaryContent text-lg;
+}

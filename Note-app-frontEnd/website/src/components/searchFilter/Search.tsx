@@ -6,7 +6,7 @@ const Search = () => {
   const [text, setText] = useState("");
   const [searchOpen, setSearchopen] = useState(false);
   const [open, setOpen] = useState(false);
-  const { state, dispatch } = useNote();
+  const { dispatch } = useNote();
   const searchHandle = (e: any) => {
     setText(e.target.value);
     dispatch({ type: "SEARCH_FILTER", payload: text });
@@ -16,6 +16,7 @@ const Search = () => {
     setSearchopen(false);
     setOpen(true);
   };
+
   return (
     <div className={`search-container ${open === true ? "test" : null}`}>
       {searchOpen ? (

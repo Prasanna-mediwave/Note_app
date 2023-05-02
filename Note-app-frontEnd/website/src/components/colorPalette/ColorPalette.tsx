@@ -5,7 +5,8 @@ const ColorPalette = () => {
   const { state, dispatch } = useNote();
   const colorHandler = () => {
     dispatch({
-      type: "COLOR_PALETTE",
+      type: "INPUT_HANDLER",
+      field: "colorPalette",
       payload: !state.colorPalette,
     });
   };
