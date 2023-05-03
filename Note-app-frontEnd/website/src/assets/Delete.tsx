@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 
 interface DeleteProps {
   onClick: any;
@@ -6,7 +7,11 @@ interface DeleteProps {
 
 export const Delete: React.FC<DeleteProps> = ({ onClick }) => {
   return (
-    <button className="icon-container" onClick={onClick}>
+    <motion.button
+      className="icon-container"
+      whileHover={{ scale: 1.1 }}
+      onClick={onClick}
+    >
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="19.556"
@@ -20,6 +25,6 @@ export const Delete: React.FC<DeleteProps> = ({ onClick }) => {
           fill="#fff"
         />
       </svg>
-    </button>
+    </motion.button>
   );
 };

@@ -1,10 +1,11 @@
 import React from "react";
+import { motion } from "framer-motion";
 
 interface EditProps {}
 
 export const Edit: React.FC<EditProps> = ({}) => {
   return (
-    <button className="icon-container">
+    <motion.button className="icon-container" whileHover={{ scale: 1.1 }}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="22.5"
@@ -40,6 +41,6 @@ export const Edit: React.FC<EditProps> = ({}) => {
           />
         </g>
       </svg>
-    </button>
+    </motion.button>
   );
 };

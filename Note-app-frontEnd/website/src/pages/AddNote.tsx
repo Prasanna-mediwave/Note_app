@@ -8,11 +8,14 @@ import "./styles/addNote.css";
 import { BackIcon } from "../assets/BackIcon";
 import { useNavigate } from "react-router-dom";
 import { useNote } from "../components/useContext/Context";
+import { motion } from "framer-motion";
 
 const AddNote = () => {
   const [inputValue, setInputValue] = useState({
-    heading: "",
-    contant: "",
+    title: "",
+    content: "",
+    noteColour: "#ffffff28 ",
+    index: 0,
   });
   const { state } = useNote();
   const navigate = useNavigate();
@@ -26,23 +29,54 @@ const AddNote = () => {
       />
       <div className="input-text-container">
         {state.colorPalette ? (
-          <div className="color-palette-container">
+          <motion.div
+            animate={{ y: -10 }}
+            initial={{ y: -100 }}
+            className="color-palette-container"
+          >
             {state.cardColor.map((item: any, index: any) => (
-              <div
+              <motion.div
+                whileHover={{
+                  scale: [1, 1.5, 1.5, 1, 1],
+                  rotate: [0, 0, 270, 270, 0],
+                  borderRadius: ["50%", "20%", "50%", "50%", "50%"],
+                }}
                 className="color-select"
                 style={{
                   background: `${item.bg}`,
-                  color: `${item.color}`,
-                  opacity: `${item.opacity}`,
                 }}
                 key={`color-id-${index}`}
-                onClick={() => {
-                  console.log(index, "<<<<<<<<tesg>>>>>>");
-                  console.log(item, "<<<<<<<<item>>>>>>>>>>>>>></item>");
-                }}
-              ></div>
+                onClick={() =>
+                  setInputValue({
+                    ...inputValue,
+                    noteColour: item.bg,
+                    index: index,
+                  })
+                }
+              >
+                {inputValue.index === index ? (
+                  <div>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="12.706"
+                      height="9.091"
+                      viewBox="0 0 12.706 9.091"
+                    >
+                      <path
+                        id="Path_2"
+                        data-name="Path 2"
+                        d="M1493.306,70.828l-3.993-4.7,1.751-1.489,2.512,2.954,6.964-5.86,1.48,1.758Z"
+                        transform="translate(-1489.313 -61.738)"
+                        fill="#212121"
+                      />
+                    </svg>
+                  </div>
+                ) : (
+                  ""
+                )}
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         ) : (
           ""
         )}
@@ -54,17 +88,17 @@ const AddNote = () => {
             placeholder="Title"
             aria-label="Enter the Title"
             name="heading"
-            value={inputValue.heading}
+            value={inputValue.title}
             onChange={(e) => {
-              setInputValue({ ...inputValue, heading: e.target.value });
+              setInputValue({ ...inputValue, title: e.target.value });
             }}
           />
           <textarea
             name="contant"
             placeholder="Type your notes here."
-            value={inputValue.contant}
+            value={inputValue.content}
             onChange={(e) => {
-              setInputValue({ ...inputValue, contant: e.target.value });
+              setInputValue({ ...inputValue, content: e.target.value });
             }}
           />
         </div>

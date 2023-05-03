@@ -1,5 +1,6 @@
 import React from "react";
 import { useNote } from "../useContext/Context";
+import { motion } from "framer-motion";
 
 const ColorPalette = () => {
   const { state, dispatch } = useNote();
@@ -11,7 +12,12 @@ const ColorPalette = () => {
     });
   };
   return (
-    <button type="button" onClick={colorHandler} className="icon-container">
+    <motion.button
+      type="button"
+      whileHover={{ scale: 1.1 }}
+      onClick={colorHandler}
+      className="icon-container"
+    >
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="26.054"
@@ -27,7 +33,7 @@ const ColorPalette = () => {
           fillRule="evenodd"
         />
       </svg>
-    </button>
+    </motion.button>
   );
 };
 

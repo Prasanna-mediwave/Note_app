@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 
 interface BackIconProps {
   onClick: any;
@@ -6,7 +7,11 @@ interface BackIconProps {
 
 export const BackIcon: React.FC<BackIconProps> = ({ onClick }) => {
   return (
-    <button onClick={onClick} className="icon-container">
+    <motion.button
+      whileHover={{ scale: 1.1 }}
+      onClick={onClick}
+      className="icon-container"
+    >
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="20.607"
@@ -21,6 +26,6 @@ export const BackIcon: React.FC<BackIconProps> = ({ onClick }) => {
           fill="#fff"
         />
       </svg>
-    </button>
+    </motion.button>
   );
 };

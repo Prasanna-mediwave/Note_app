@@ -1,15 +1,37 @@
+import axios from "axios";
 import React from "react";
+import { useNote } from "../components/useContext/Context";
+import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 
 interface TickIconProps {
   textValue: any;
 }
 
 export const TickIcon: React.FC<TickIconProps> = ({ textValue }) => {
-  const handleClick = () => {};
+  const { dispatch } = useNote();
+  const navigate = useNavigate();
+  const handleClick = () => {
+    axios
+      .post("http://localhost:3001/notes/create", {
+        title: textValue.title,
+        content: textValue.content,
+        noteColour: textValue.noteColour,
+      })
+      .then((res) => {
+        dispatch({
+          type: "INPUT_HANDLER",
+          field: "cardDetial",
+          payload: res.data,
+        });
+      });
+    navigate("/");
+  };
   return (
-    <button
-      className={`icon-container ${textValue.heading ? "!bg-selected" : ""}`}
+    <motion.button
+      className={`icon-container ${textValue.title ? "!bg-selected" : ""}`}
       onClick={handleClick}
+      whileHover={{ scale: 1.1 }}
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -25,6 +47,6 @@ export const TickIcon: React.FC<TickIconProps> = ({ textValue }) => {
           fill="#fff"
         />
       </svg>
-    </button>
+    </motion.button>
   );
 };

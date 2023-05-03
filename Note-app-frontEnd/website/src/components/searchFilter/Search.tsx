@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNote } from "../useContext/Context";
 import "./search.css";
+import { motion } from "framer-motion";
 
 const Search = () => {
   const [text, setText] = useState("");
@@ -12,7 +13,7 @@ const Search = () => {
     dispatch({ type: "SEARCH_FILTER", payload: text });
   };
   const closeHandler = () => {
-    dispatch({ type: "SEARCH_FILTER", payload: "" });
+    // dispatch({ type: "SEARCH_FILTER", payload: "" });
     setSearchopen(false);
     setOpen(true);
   };
@@ -61,7 +62,8 @@ const Search = () => {
           </button>
         </div>
       ) : (
-        <button
+        <motion.button
+          whileHover={{ scale: 1.1 }}
           className="icon-container !bg-transparent"
           onClick={() => {
             setSearchopen(true);
@@ -81,7 +83,7 @@ const Search = () => {
               fill="#fff"
             />
           </svg>
-        </button>
+        </motion.button>
       )}
     </div>
   );

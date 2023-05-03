@@ -1,4 +1,5 @@
 import { useNote } from "../useContext/Context";
+import { motion } from "framer-motion";
 
 const CardView = () => {
   const { state, dispatch } = useNote();
@@ -10,7 +11,12 @@ const CardView = () => {
     });
   };
   return (
-    <button type="button" onClick={viewHandler} className="icon-container">
+    <motion.button
+      whileHover={{ scale: 1.1 }}
+      type="button"
+      onClick={viewHandler}
+      className="icon-container"
+    >
       {!state.view ? (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -98,7 +104,7 @@ const CardView = () => {
           </g>
         </svg>
       )}
-    </button>
+    </motion.button>
   );
 };
 

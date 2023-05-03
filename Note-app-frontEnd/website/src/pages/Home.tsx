@@ -11,11 +11,13 @@ import { Delete } from "../assets/Delete";
 import { Edit } from "../assets/Edit";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { motion } from "framer-motion";
 
 const Home = () => {
   const { state, dispatch } = useNote();
   const navigate = useNavigate();
   const [singleCard, setSingleCard] = useState<any>([]);
+
   useEffect(() => {
     axios.get("http://localhost:3001/notes").then((res) => {
       dispatch({
@@ -27,15 +29,16 @@ const Home = () => {
   }, []);
   const handleDelete = () => {
     axios
-      .delete(`http://localhost:3001/notes/delete/${singleCard.id}`)
-      .then((res) => console.log(res.data, "<<<<<test>>>>>>"));
-    dispatch({
-      type: "INPUT_HANDLER",
-      field: "viewDetial",
-      payload: !state.viewDetial,
-    });
-    window.location.reload();
+      .delete(`http://localhost:3001/notes/delete/${singleCard._id}`)
+      .then((res) => {
+        dispatch({
+          type: "INPUT_HANDLER",
+          field: "cardDetial",
+          payload: res.data,
+        });
+      });
   };
+
   return (
     <>
       {!state.viewDetial ? (
@@ -63,15 +66,21 @@ const Home = () => {
       )}
       <Card setSingleCard={setSingleCard} singleCard={singleCard} />
       {!state.viewDetial ? (
-        <div className="min_xs:hidden">
-          <button
+        <motion.div
+          className="min_xs:hidden"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.5, duration: 1.5 }}
+        >
+          <motion.button
+            whileHover={{ scale: 1.1 }}
             type="button"
             className="add-btn"
             onClick={() => navigate("/addnote")}
           >
             <AddIcon />
-          </button>
-        </div>
+          </motion.button>
+        </motion.div>
       ) : (
         ""
       )}

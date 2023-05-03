@@ -1,5 +1,6 @@
 import React from "react";
 import "./header.css";
+import { motion } from "framer-motion";
 
 interface HeaderProps {
   leftside: any;
@@ -25,3 +26,4 @@ export const Header: React.FC<HeaderProps> = ({
     </header>
   );
 };
+Header;

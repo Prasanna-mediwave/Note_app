@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 
 interface PinIconProps {
   pinValue?: any;
@@ -6,7 +7,7 @@ interface PinIconProps {
 
 export const PinIcon: React.FC<PinIconProps> = ({ pinValue }) => {
   return (
-    <button className="icon-container">
+    <motion.button className="icon-container" whileHover={{ scale: 1.1 }}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="31.248"
@@ -23,6 +24,6 @@ export const PinIcon: React.FC<PinIconProps> = ({ pinValue }) => {
           strokeWidth="1"
         />
       </svg>
-    </button>
+    </motion.button>
   );
 };
