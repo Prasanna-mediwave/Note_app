@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Header } from "../components/header/Header";
 
 import ColorPalette from "../components/colorPalette/ColorPalette";
@@ -16,16 +16,33 @@ const AddNote = () => {
     content: "",
     noteColour: "#ffffff28 ",
     index: 0,
+    id: "",
+    pinnedNote: false,
   });
   const { state } = useNote();
   const navigate = useNavigate();
+  useEffect(() => {
+    if (state.singleCard._id) {
+      setInputValue(state.singleCard);
+    }
+  }, []);
   return (
     <>
       <Header
         leftside={<BackIcon onClick={() => navigate(-1)} />}
         rigthOption2={<ColorPalette />}
         rigthOption3={<TickIcon textValue={inputValue} />}
-        rigthOption1={<PinIcon />}
+        rigthOption1={
+          <PinIcon
+            pinValue={inputValue.pinnedNote}
+            onClick={() => {
+              setInputValue({
+                ...inputValue,
+                pinnedNote: !inputValue.pinnedNote,
+              });
+            }}
+          />
+        }
       />
       <div className="input-text-container">
         {state.colorPalette ? (

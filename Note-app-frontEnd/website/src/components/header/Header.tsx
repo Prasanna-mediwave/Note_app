@@ -1,6 +1,5 @@
 import React from "react";
 import "./header.css";
-import { motion } from "framer-motion";
 
 interface HeaderProps {
   leftside: any;

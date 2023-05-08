@@ -2,18 +2,17 @@ import { useNavigate } from "react-router-dom";
 import AddIcon from "../../assets/AddIcon";
 import { useNote } from "../useContext/Context";
 import "./card.css";
-import { useState } from "react";
 import { motion } from "framer-motion";
-import React from "react";
+import axios from "axios";
+import moment from "moment";
 
-interface CardProps {
-  singleCard: any;
-  setSingleCard: any;
-}
-
-export const Card: React.FC<CardProps> = ({ singleCard, setSingleCard }) => {
+export const Card = () => {
   const { state, dispatch } = useNote();
   const navigate = useNavigate();
+  const update = state.cardDetial.sort(
+    (a: any, b: any) => b.pinnedNote - a.pinnedNote
+  );
+
   return (
     <>
       {!state.viewDetial ? (
@@ -39,14 +38,20 @@ export const Card: React.FC<CardProps> = ({ singleCard, setSingleCard }) => {
           <section
             className={`card-container ${state.view ? "grid-cols-1" : null}`}
           >
-            {state.cardDetial &&
-            state.cardDetial.notes &&
-            state.cardDetial.notes.length
-              ? state.cardDetial.notes.map((item: any, index: any) => (
+            {update && update.length
+              ? update.map((item: any, index: any) => (
                   <div
                     key={`card-id-${index}`}
                     onClick={() => {
-                      setSingleCard(item);
+                      axios
+                        .get(`http://localhost:3001/notes/${item._id}`)
+                        .then((res) => {
+                          dispatch({
+                            type: "INPUT_HANDLER",
+                            field: "singleCard",
+                            payload: res.data,
+                          });
+                        });
                       dispatch({
                         type: "INPUT_HANDLER",
                         field: "viewDetial",
@@ -63,15 +68,39 @@ export const Card: React.FC<CardProps> = ({ singleCard, setSingleCard }) => {
                       }`}
                     >
                       <div
-                        className={`${
+                        className={`flex justify-between ${
                           item.noteColour === "#ffffff28"
                             ? "text-naturalWhite"
                             : "text-primaryBG"
                         }`}
                       >
-                        {item.title}
+                        <div>{item.title}</div>
+                        <div
+                          className={
+                            item.pinnedNote === true ? "block" : "hidden"
+                          }
+                        >
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="25.314"
+                            height="26.556"
+                            viewBox="0 0 25.314 26.556"
+                          >
+                            <path
+                              id="Path_432"
+                              data-name="Path 432"
+                              d="M249.91,108.161l-2.43-4.176V97.457l.534-1.044a.968.968,0,0,0-.811-1.5h-7.543a.968.968,0,0,0-.813,1.494l.525,1.018v6.558l-2.43,4.176a.989.989,0,0,0,.856,1.487h5.216v6.5a.411.411,0,0,0,.823,0v-6.5h5.216a.99.99,0,0,0,.855-1.487Zm-.71.581a.162.162,0,0,1-.145.084H237.8a.167.167,0,0,1-.145-.251l2.485-4.272a.411.411,0,0,0,.056-.207V97.327a.41.41,0,0,0-.046-.188l-.578-1.121h0a.413.413,0,0,0-.03-.049.146.146,0,0,1,.119-.23H247.2a.146.146,0,0,1,.121.228.357.357,0,0,0-.028.047L246.7,97.17a.418.418,0,0,0-.045.188V104.1a.411.411,0,0,0,.056.207l2.485,4.272a.162.162,0,0,1,0,.167Z"
+                              transform="translate(-109.98 -222.087) rotate(39)"
+                              fill="#212121"
+                              stroke="#212121"
+                              strokeWidth="1"
+                            />
+                          </svg>
+                        </div>
                       </div>
-                      <div className=" text-primaryDate">{item.createdOn}</div>
+                      <div className=" text-primaryDate">
+                        {moment(item.createdOn).format("ll")}
+                      </div>
                     </div>
                   </div>
                 ))
@@ -80,9 +109,9 @@ export const Card: React.FC<CardProps> = ({ singleCard, setSingleCard }) => {
         </motion.div>
       ) : (
         <div>
-          <div className="card-header">{singleCard.title}</div>
-          <div className="card-date">{singleCard.createdOn}</div>
-          <div className="card-detials">{singleCard.content}</div>
+          <div className="card-header">{state.singleCard.title}</div>
+          <div className="card-date">{state.singleCard.createdOn}</div>
+          <div className="card-detials">{state.singleCard.content}</div>
         </div>
       )}
     </>

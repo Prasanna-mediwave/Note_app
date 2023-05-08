@@ -2,12 +2,17 @@ import React from "react";
 import { motion } from "framer-motion";
 
 interface PinIconProps {
-  pinValue?: any;
+  onClick: any;
+  pinValue: any;
 }
 
-export const PinIcon: React.FC<PinIconProps> = ({ pinValue }) => {
+export const PinIcon: React.FC<PinIconProps> = ({ onClick, pinValue }) => {
   return (
-    <motion.button className="icon-container" whileHover={{ scale: 1.1 }}>
+    <motion.button
+      className={`icon-container ${pinValue === true ? "!bg-selected" : ""}`}
+      whileHover={{ scale: 1.1 }}
+      onClick={onClick}
+    >
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="31.248"

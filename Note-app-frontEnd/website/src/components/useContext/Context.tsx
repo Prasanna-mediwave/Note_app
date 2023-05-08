@@ -5,6 +5,7 @@ const initialstate = {
   colorPalette: false,
   viewDetial: false,
   cardDetial: [],
+  singleCard: [],
   filter: null,
   cardColor: [
     { bg: "#ffffff28 " },
@@ -27,17 +28,6 @@ const NoteReducer = (state: any, action: any) => {
   switch (action.type) {
     case "INPUT_HANDLER":
       return { ...state, [action.field]: action.payload };
-    case "SEARCH_FILTER":
-      return {
-        ...state,
-        filter: state.cardDetial.filter((item: any) => {
-          const regex = new RegExp(`${action.payload}`, "ig");
-          console.log(regex, "<<<<<>>>>>>>>");
-          console.log(state.cardDetial);
-
-          return item.note.match(regex);
-        }),
-      };
     default:
       return state;
   }

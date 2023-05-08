@@ -16,27 +16,31 @@ import { motion } from "framer-motion";
 const Home = () => {
   const { state, dispatch } = useNote();
   const navigate = useNavigate();
-  const [singleCard, setSingleCard] = useState<any>([]);
 
   useEffect(() => {
     axios.get("http://localhost:3001/notes").then((res) => {
       dispatch({
         type: "INPUT_HANDLER",
         field: "cardDetial",
-        payload: res.data,
+        payload: res.data.notes,
       });
     });
   }, []);
   const handleDelete = () => {
     axios
-      .delete(`http://localhost:3001/notes/delete/${singleCard._id}`)
+      .delete(`http://localhost:3001/notes/delete/${state.singleCard._id}`)
       .then((res) => {
         dispatch({
           type: "INPUT_HANDLER",
           field: "cardDetial",
           payload: res.data,
         });
+        navigate("/");
+        window.location.reload();
       });
+  };
+  const handleEdit = () => {
+    navigate("/addnote");
   };
 
   return (
@@ -61,10 +65,10 @@ const Home = () => {
             />
           }
           rigthOption1={<Delete onClick={handleDelete} />}
-          rigthOption2={<Edit />}
+          rigthOption2={<Edit onClick={handleEdit} />}
         />
       )}
-      <Card setSingleCard={setSingleCard} singleCard={singleCard} />
+      <Card />
       {!state.viewDetial ? (
         <motion.div
           className="min_xs:hidden"

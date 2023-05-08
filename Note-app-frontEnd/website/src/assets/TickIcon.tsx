@@ -9,22 +9,39 @@ interface TickIconProps {
 }
 
 export const TickIcon: React.FC<TickIconProps> = ({ textValue }) => {
-  const { dispatch } = useNote();
+  const { state, dispatch } = useNote();
   const navigate = useNavigate();
   const handleClick = () => {
-    axios
-      .post("http://localhost:3001/notes/create", {
-        title: textValue.title,
-        content: textValue.content,
-        noteColour: textValue.noteColour,
-      })
-      .then((res) => {
-        dispatch({
-          type: "INPUT_HANDLER",
-          field: "cardDetial",
-          payload: res.data,
+    if (state.singleCard._id) {
+      axios
+        .patch(`http://localhost:3001/notes/create/${state.singleCard._id}`, {
+          title: textValue.title,
+          content: textValue.content,
+          noteColour: textValue.noteColour,
+          pinnedNote: textValue.pinnedNote,
+        })
+        .then((res) => {
+          dispatch({
+            type: "INPUT_HANDLER",
+            field: "singleCard",
+            payload: res.data,
+          });
         });
-      });
+    } else
+      axios
+        .post("http://localhost:3001/notes/create", {
+          title: textValue.title,
+          content: textValue.content,
+          noteColour: textValue.noteColour,
+          pinnedNote: textValue.pinnedNote,
+        })
+        .then((res) => {
+          dispatch({
+            type: "INPUT_HANDLER",
+            field: "cardDetial",
+            payload: res.data,
+          });
+        });
     navigate("/");
   };
   return (

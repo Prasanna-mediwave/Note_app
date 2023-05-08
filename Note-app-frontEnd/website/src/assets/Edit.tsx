@@ -1,11 +1,17 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-interface EditProps {}
+interface EditProps {
+  onClick: any;
+}
 
-export const Edit: React.FC<EditProps> = ({}) => {
+export const Edit: React.FC<EditProps> = ({ onClick }) => {
   return (
-    <motion.button className="icon-container" whileHover={{ scale: 1.1 }}>
+    <motion.button
+      className="icon-container"
+      whileHover={{ scale: 1.1 }}
+      onClick={onClick}
+    >
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="22.5"

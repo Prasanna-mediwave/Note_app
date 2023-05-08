@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNote } from "../useContext/Context";
 import "./search.css";
 import { motion } from "framer-motion";
+import axios from "axios";
 
 const Search = () => {
   const [text, setText] = useState("");
@@ -10,12 +11,31 @@ const Search = () => {
   const { dispatch } = useNote();
   const searchHandle = (e: any) => {
     setText(e.target.value);
-    dispatch({ type: "SEARCH_FILTER", payload: text });
+    if (e.target.value.length > 0) {
+      axios
+        .get(`http://localhost:3001/notes/search/${e.target.value}`)
+        .then((res) => {
+          console.log(res.data);
+
+          dispatch({
+            type: "INPUT_HANDLER",
+            field: "cardDetial",
+            payload: res.data,
+          });
+        });
+    }
   };
   const closeHandler = () => {
-    // dispatch({ type: "SEARCH_FILTER", payload: "" });
+    setText("");
     setSearchopen(false);
     setOpen(true);
+    axios.get("http://localhost:3001/notes").then((res) => {
+      dispatch({
+        type: "INPUT_HANDLER",
+        field: "cardDetial",
+        payload: res.data.notes,
+      });
+    });
   };
 
   return (
