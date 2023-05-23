@@ -15,7 +15,9 @@ const CardView = () => {
       whileHover={{ scale: 1.1 }}
       type="button"
       onClick={viewHandler}
-      className="icon-container"
+      className={`icon-container ${
+        state.cardDetial.length === 0 ? "hidden" : "block"
+      }`}
     >
       {!state.view ? (
         <svg

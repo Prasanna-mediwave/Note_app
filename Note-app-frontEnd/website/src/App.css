@@ -1,3 +1,6 @@
 .icon-container {
   @apply w-[50px] h-[50px] !bg-naturalWhite/s p-3 rounded-[15px] flex items-center justify-center gap-5;
 }
+svg {
+  @apply m-auto;
+}

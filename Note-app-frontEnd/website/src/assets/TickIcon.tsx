@@ -42,6 +42,7 @@ export const TickIcon: React.FC<TickIconProps> = ({ textValue }) => {
             payload: res.data,
           });
         });
+
     navigate("/");
   };
   return (

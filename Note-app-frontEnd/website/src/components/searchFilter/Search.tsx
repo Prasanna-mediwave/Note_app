@@ -8,7 +8,7 @@ const Search = () => {
   const [text, setText] = useState("");
   const [searchOpen, setSearchopen] = useState(false);
   const [open, setOpen] = useState(false);
-  const { dispatch } = useNote();
+  const { state, dispatch } = useNote();
   const searchHandle = (e: any) => {
     setText(e.target.value);
     if (e.target.value.length > 0) {
@@ -39,7 +39,11 @@ const Search = () => {
   };
 
   return (
-    <div className={`search-container ${open === true ? "test" : null}`}>
+    <div
+      className={`search-container ${open === true ? "test" : null} ${
+        state.cardDetial.length === 0 ? "hidden" : "block"
+      }`}
+    >
       {searchOpen ? (
         <div className="open-search">
           <div className="icon-container cursor-pointer !bg-transparent">

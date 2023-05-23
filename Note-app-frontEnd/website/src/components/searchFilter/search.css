@@ -2,7 +2,7 @@
   @apply flex bg-naturalWhite/s rounded-[15px];
 }
 .search-container input {
-  @apply m-2 bg-transparent text-naturalWhite outline-none focus:outline-none;
+  @apply m-2 bg-transparent text-naturalWhite outline-none focus:outline-none max_xs:w-32;
 }
 .open-search {
   @apply flex;

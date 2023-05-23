@@ -2,5 +2,5 @@
   @apply flex items-center text-[42px] text-naturalWhite h-[63px];
 }
 .header-right {
-  @apply flex gap-5;
+  @apply flex gap-5 max_xxs:gap-1;
 }

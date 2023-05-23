@@ -26,6 +26,9 @@ const AddNote = () => {
       setInputValue(state.singleCard);
     }
   }, []);
+  const handlleChange = (e: any) => {
+    setInputValue({ ...inputValue, content: e.target.value });
+  };
   return (
     <>
       <Header
@@ -114,9 +117,7 @@ const AddNote = () => {
             name="contant"
             placeholder="Type your notes here."
             value={inputValue.content}
-            onChange={(e) => {
-              setInputValue({ ...inputValue, content: e.target.value });
-            }}
+            onChange={handlleChange}
           />
         </div>
       </div>
