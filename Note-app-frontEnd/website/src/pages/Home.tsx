@@ -42,7 +42,14 @@ const Home = () => {
   const handleEdit = () => {
     navigate("/addnote");
   };
-
+  const addHander = () => {
+    navigate("/addnote");
+    dispatch({
+      type: "INPUT_HANDLER",
+      field: "singleCard",
+      payload: "",
+    });
+  };
   return (
     <>
       {!state.viewDetial ? (
@@ -80,7 +87,7 @@ const Home = () => {
             whileHover={{ scale: 1.1 }}
             type="button"
             className="add-btn"
-            onClick={() => navigate("/addnote")}
+            onClick={addHander}
           >
             <AddIcon />
           </motion.button>

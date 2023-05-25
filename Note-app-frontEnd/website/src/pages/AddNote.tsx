@@ -103,6 +103,12 @@ const AddNote = () => {
 
         <div className="form-container">
           <input
+            style={{
+              caretColor: `${
+                state.singleCard.noteColour ? state.singleCard.noteColour : ""
+              }`,
+            }}
+            autoFocus
             autoComplete="off"
             type="text"
             placeholder="Title"

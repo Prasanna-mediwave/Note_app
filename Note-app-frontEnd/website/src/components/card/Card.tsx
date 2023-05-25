@@ -10,7 +10,14 @@ import Dispaly from "../../assets/Dispaly";
 export const Card = () => {
   const { state, dispatch } = useNote();
   const navigate = useNavigate();
-  console.log(state.cardDetial);
+  const addHander = () => {
+    navigate("/addnote");
+    dispatch({
+      type: "INPUT_HANDLER",
+      field: "singleCard",
+      payload: "",
+    });
+  };
 
   return (
     <>
@@ -30,7 +37,7 @@ export const Card = () => {
               whileHover={{ scale: 1.1 }}
               type="button"
               className="add-new-note"
-              onClick={() => navigate("/addnote")}
+              onClick={addHander}
             >
               <span className="addIcon">
                 <AddIcon />
